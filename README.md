@@ -12,4 +12,4 @@ Landing page for Fidelius, a theoretical cryptography startup. Static HTML, serv
 ## Publishing
 
 In the repo, open **Settings → Pages**, set **Source** to *Deploy from a branch*, and pick `master` / `/ (root)`.
-The site will be live at `https://ajwann.github.io/fidelius/`.
+The site is served at `https://fideli.us` (see `CNAME`).
