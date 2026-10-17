@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fidelius — Secrets, Kept</title>
+  <meta name="description" content="Fidelius builds cryptographic infrastructure for the things that must never be found.">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #170626;          /* very dark purple — the brand */
+      --ink-soft: #4a3260;
+      --ink-faint: rgba(23, 6, 38, 0.14);
+      --paper: #f4f1ec;
+      --glow: #8b5cf6;
+      --sans: "Space Grotesk", system-ui, sans-serif;
+      --mono: "IBM Plex Mono", ui-monospace, monospace;
+      --gutter: clamp(16px, 4vw, 48px);
+      --max: 1200px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-weight: 400;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    a { color: inherit; }
+    ::selection { background: var(--ink); color: var(--paper); }
+
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
+
+    /* ---------- Nav ---------- */
+    nav {
+      position: sticky; top: 0; z-index: 10;
+      background: rgba(244, 241, 236, 0.86);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--ink-faint);
+    }
+    nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .brand svg { width: 28px; height: 28px; }
+    .wordmark {
+      font-weight: 500;
+      letter-spacing: 0.42em;
+      font-size: 15px;
+      margin-right: -0.42em;
+    }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      position: relative;
+      min-height: calc(100vh - 64px);
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 80px 0;
+      overflow: hidden;
+    }
+    .hero-inner { position: relative; --mark: clamp(140px, 22vw, 220px); }
+    .mark {
+      width: var(--mark);
+      height: auto;
+      margin: 0 auto 40px;
+      display: block;
+      cursor: pointer;
+    }
+    .mark .outer, .mark .chev, .mark .key {
+      stroke-dasharray: 400; stroke-dashoffset: 400;
+      animation: draw 1.8s cubic-bezier(.6,.05,.2,1) forwards;
+    }
+    .mark .chev { animation-delay: .35s; }
+    .mark .key  { animation-delay: .7s; transition: fill .6s ease, filter .6s ease; }
+    .mark.revealed .key { fill: var(--ink); filter: drop-shadow(0 0 10px var(--glow)); }
+    @keyframes draw { to { stroke-dashoffset: 0; } }
+
+    .hero h1 {
+      font-weight: 500;
+      font-size: clamp(36px, 7vw, 88px);
+      letter-spacing: 0.32em;
+      margin-right: -0.32em;
+      line-height: 1;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .mark .outer, .mark .chev, .mark .key { animation: none; stroke-dashoffset: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="wrap">
+      <a class="brand" href="#top" aria-label="Fidelius home">
+        <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="miter" stroke-linecap="square" aria-hidden="true">
+          <path d="M50 4 L96 50 L50 96 L4 50 Z"/>
+          <path d="M50 18 L82 50 M50 18 L18 50"/>
+          <path d="M45.5 50.93 A10 10 0 1 1 54.5 50.93 L59 72 L41 72 Z"/>
+        </svg>
+        <span class="wordmark">FIDELIUS</span>
+      </a>
+    </div>
+  </nav>
+
+  <header class="hero" id="top">
+    <div class="hero-inner wrap">
+      <svg class="mark" id="mark" viewBox="0 0 100 100" role="img" aria-label="Fidelius mark"
+           fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="miter" stroke-linecap="square">
+        <title>Click to cast</title>
+        <path class="outer" d="M50 4 L96 50 L50 96 L4 50 Z"/>
+        <path class="chev" d="M50 18 L82 50 M50 18 L18 50"/>
+        <path class="key" d="M45.5 50.93 A10 10 0 1 1 54.5 50.93 L59 72 L41 72 Z"/>
+      </svg>
+      <h1>FIDELIUS</h1>
+    </div>
+  </header>
+
+  <script>
+    // Click the mark to "cast" the charm
+    const mark = document.getElementById('mark');
+    mark.addEventListener('click', () => mark.classList.toggle('revealed'));
+
+    console.log('%c◇ FIDELIUS', 'font: 600 16px monospace; letter-spacing: .3em; color: #170626');
+    console.log('You found the console. The secret, however, remains safe.');
+  </script>
+</body>
+</html>
